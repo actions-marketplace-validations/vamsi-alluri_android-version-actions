@@ -1,19 +1,29 @@
-name: "Increment the version code of your project"
-description: "This action will increment the version code directly in build.gradle . "
+name: "Increment the Android version code and version name based on semantic formatting."
+description: "This action will increment the version code directly in build.gradle."
 inputs:
   gradlePath:
-    description: "Gradle path to override version"
+    description: "Path to the build.gradle file"
     required: true
     default: "app/build.gradle"
   versionCode:
-    description: "The new version code"
+    description: "Set a specific version code (overrides increment logic)"
     required: false
   versionName:
-    description: "The new version name"
+    description: "Set a specific version name (overrides increment logic)"
+    required: false
+  versionCodeIncrementBy:
+    description: "Integer value to increment the existing version code by (e.g., 1)"
+    required: false
+  SemanticVersioningOptionToIncrement:
+    description: "The part of the semantic version to increment ('major', 'minor', or 'patch')"
     required: false
 outputs:
-  result: # id of output
-    description: "Action Result"
+  result:
+    description: "Action Result status"
+  newVersionCode:
+    description: "The final version code value after the update"
+  newVersionName:
+    description: "The final version name value after the update"
 runs:
   using: "node20"
   main: "dist/index.js"
